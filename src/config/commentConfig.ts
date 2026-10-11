@@ -56,7 +56,7 @@ export const commentConfig: CommentConfig = {
 	//giscus评论系统配置
 	giscus: {
 		// 设置 Giscus 评论系统仓库
-		repo: "Jarvis0227/Aemeath",
+		repo: "Congitech/QuinC-blog",
 		// 启用 Giscus 前，从 giscus.app 获取 Aemeath 仓库对应的 ID
 		repoId: "",
 		// 设置 Giscus 评论系统分类

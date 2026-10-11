@@ -6,23 +6,23 @@ const SITE_LANG = "zh_CN";
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "朝朝听雨",
+	title: "QuinC",
 
 	// 站点副标题
-	subtitle: "物物而不物于物，念念而不念于念",
+	subtitle: "",
 
 	// Aemeath 主题版本
 	themeVersion: "V4.1.6",
 
 	// 站点 URL
-	site_url: "https://rainzt.cn",
+	site_url: "https://quinc.cn",
 
 	// 站点描述
 	description:
-		"Aemeath 是朝朝听雨（Rain）的个人博客站点，记录技术实践、项目进展与日常写作。",
+		"QuinC 的个人博客，记录 CTF 学习、网络安全与技术折腾的过程。",
 
 	// 站点关键词
-	keywords: ["Aemeath", "Rain", "Astro", "ACGN", "博客", "技术博客", "静态博客"],
+	keywords: ["QuinC", "CTF", "网络安全", "Astro", "博客", "技术博客", "静态博客"],
 
 	// 主题色
 	themeColor: {
@@ -47,22 +47,22 @@ export const siteConfig: SiteConfig = {
 		followTheme: false,
 	},
 
-	// Favicon 配置
+	// Favicon 配置（先用主题自带的通用图标，之后换成你自己的图）
 	favicon: [
 		{
-			src: "/favicon/chaoc-tingyu-avatar-512.png?v=20260823",
-			sizes: "512x512",
-		},
-		{
-			src: "/favicon/chaoc-tingyu-avatar-192.png?v=20260823",
+			src: "/favicon/favicon-light-192.png",
 			sizes: "192x192",
 		},
 		{
-			src: "/favicon/chaoc-tingyu-avatar-180.png?v=20260823",
+			src: "/favicon/favicon-light-180.png",
 			sizes: "180x180",
 		},
 		{
-			src: "/favicon/chaoc-tingyu-avatar-32.png?v=20260823",
+			src: "/favicon/favicon-light-128.png",
+			sizes: "128x128",
+		},
+		{
+			src: "/favicon/favicon-light-32.png",
 			sizes: "32x32",
 		},
 	],
@@ -77,11 +77,11 @@ export const siteConfig: SiteConfig = {
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
 			type: "image",
-			value: "assets/images/chaoc-tingyu-avatar.webp",
-			alt: "朝朝听雨",
+			value: "assets/images/avatar.webp",
+			alt: "QuinC",
 		},
 		// 导航栏标题
-		title: "朝朝听雨",
+		title: "QuinC",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
@@ -93,7 +93,7 @@ export const siteConfig: SiteConfig = {
 	},
 
 	// 站点开始日期，用于统计运行天数
-	siteStartDate: "2026-07-08",
+	siteStartDate: "2026-08-29",
 
 	// 站点时区（IANA 时区字符串），用于格式化bangumi、rss里的构建日期时间等等..
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换
@@ -108,11 +108,13 @@ export const siteConfig: SiteConfig = {
 		// 留言板页面开关，需要配置评论系统
 		guestbook: true,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐
-		bangumi: true,
+		// 暂时关闭：需要先填入你自己的 Bangumi 用户 ID
+		bangumi: false,
 		// 相册页面开关
 		gallery: true,
 		// 追番页面开关
-		anime: true,
+		// 暂时关闭：需要先填入你自己的 Bilibili UID
+		anime: false,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
@@ -168,8 +170,8 @@ export const siteConfig: SiteConfig = {
 
 	// bangumi配置
 	bangumi: {
-		// Bangumi用户ID
-		userId: "1143164",
+		// Bangumi用户ID（填入你自己的，然后到上面 pages 里把 bangumi 改回 true）
+		userId: "",
 		// 数据模式：static=构建时获取，dynamic=客户端实时获取
 		// static 模式在构建时获取数据并静态渲染，部署后数据不更新
 		// dynamic 模式在浏览器中实时请求 API，始终显示最新数据
@@ -188,8 +190,8 @@ export const siteConfig: SiteConfig = {
 	anime: {
 		// Bilibili 配置
 		bilibili: {
-			// 你的 Bilibili 用户 UID
-			uid: "38932988",
+			// 你的 Bilibili 用户 UID（填入你自己的，然后到上面 pages 里把 anime 改回 true）
+			uid: "",
 		},
 		// TMDB 配置（可选，需要翻墙）
 		// tmdb: {

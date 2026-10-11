@@ -301,7 +301,7 @@ async function fetchText(
 				headers: {
 					Accept: accept,
 					"Cache-Control": "no-cache",
-					"User-Agent": "Rainzt-Moments/1.1 (+https://rainzt.cn/)",
+					"User-Agent": "Rainzt-Moments/1.1 (+https://quinc.cn/)",
 				},
 			});
 			if (response.ok) {

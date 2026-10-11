@@ -109,17 +109,6 @@ export const friendsProjects: FriendLink[] = [
 // 友链配置
 export const friendsConfig: FriendLink[] = [
 	{
-		title: "朝朝听雨",
-		imgurl: "https://rainzt.cn/zzty.png",
-		desc: "物物而不物于物，念念而不念于念",
-		siteurl: "https://rainzt.cn/",
-		rss: "/rss.xml",
-		screenshot: "https://rainzt.cn/index.png",
-		tags: ["AI", "效率工具", "跨境电商"],
-		weight: 100,
-		enabled: true,
-	},
-	{
 		title: "夏夜流萤",
 		imgurl:
 			"https://weavatar.com/avatar/d252655d40d6874417a720bad0a6c5f77f8f6a1fd2f882f8f338402dc37e4190?s=640",

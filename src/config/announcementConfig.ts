@@ -6,7 +6,7 @@ export const announcementConfig: AnnouncementConfig = {
 
 	// 公告内容
 	content:
-		"👋🏻 Hi，我是Rain，也是朝朝听雨，欢迎来到我的博客！这里是分享知识、交流想法的地方。希望你能在这里找到有价值的内容！\n本站已开源",
+		"👋🏻 Hi，我是 QuinC，欢迎来到我的博客！这里记录 CTF、网络安全与技术折腾。",
 
 	// 是否允许用户关闭公告
 	closable: false,
@@ -28,7 +28,7 @@ export const announcementConfig: AnnouncementConfig = {
 			// 链接文本
 			text: "开源地址",
 			// 链接 URL
-			url: "https://github.com/Jarvis0227/Aemeath",
+			url: "https://github.com/Congitech/QuinC-blog",
 			// 外部链接
 			external: true,
 		},

@@ -3,7 +3,7 @@ import type { APIRoute } from "astro";
 
 export const prerender = true;
 
-const repository = "Jarvis0227/Aemeath";
+const repository = "Congitech/QuinC-blog";
 
 const readCommitDates = () => {
 	try {

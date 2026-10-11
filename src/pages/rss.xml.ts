@@ -52,10 +52,10 @@ export async function GET(context: APIContext): Promise<Response> {
 	return rss({
 		title: siteConfig.title,
 		description: siteConfig.subtitle || "No description",
-		site: context.site ?? "https://rainzt.cn",
+		site: context.site ?? "https://quinc.cn",
 		customData: `<templateTheme>Aemeath</templateTheme>
 		<templateThemeVersion>${pkg.version}</templateThemeVersion>
-		<templateThemeUrl>https://rainzt.cn/</templateThemeUrl>
+		<templateThemeUrl>https://quinc.cn/</templateThemeUrl>
 		<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>`,
 		items: feedItems,
 	});
