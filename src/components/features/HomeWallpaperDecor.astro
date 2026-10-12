@@ -44,7 +44,19 @@ const socialLinks = [
 	},
 ];
 
-const stickerImages = [
+// 显式声明可选字段，否则 TS 会按字面量推断成联合类型，
+// 模板访问 defaultStyle / mobileStyle 时会报 TS2339
+type WallpaperSticker = {
+	key: string;
+	src: string;
+	initialStyle?: string;
+	defaultStyle?: string;
+	nationalDayStyle?: string;
+	mobileStyle?: string;
+	mobileAnchor?: string;
+};
+
+const stickerImages: WallpaperSticker[] = [
 	{
 		key: "quote",
 		src: url("/images/home-stickers/claudecode.webp"),
@@ -56,80 +68,76 @@ const stickerImages = [
 		nationalDayStyle: "inset: 23.4649% auto auto 29.8958%;",
 		mobileAnchor: "home-wallpaper-card",
 	},
-	{
-		key: "coder",
-		src: url("/monthly-2026-08/loading-girl.webp"),
-		initialStyle: "inset: 83.320066% auto auto 18.718750%;",
-		mobileStyle: "inset: auto auto 3% 29.5%;",
-	},
-	{
-		key: "blonde",
-		src: url("/images/home-stickers/blonde-idol.webp"),
-		initialStyle: "inset: 42.073794% auto auto 56.985938%;",
-		defaultStyle: "inset: 42.073794% auto auto 56.985938%;",
-		nationalDayStyle: "inset: 42.1053% auto auto 59.4271%;",
-		mobileStyle: "inset: auto auto 3% 55.5%;",
-	},
-	{
-		key: "dark",
-		src: url("/images/home-stickers/dark-haired-girl.webp"),
-		initialStyle: "inset: 36.321820% auto auto 36.997969%;",
-	},
-	{
-		key: "pink-bows",
-		src: url("/images/home-stickers/pink-bows.webp"),
-		initialStyle: "inset: 85.879934% auto auto 67.690625%;",
-	},
-	{
-		key: "aqua-singer",
-		src: url("/images/home-stickers/aqua-singer.webp"),
-		initialStyle: "inset: 85.100877% auto auto 60.510937%;",
-	},
-	{
-		key: "blue-witch",
-		src: url("/images/home-stickers/blue-witch.webp"),
-		initialStyle: "inset: 84.791667% auto auto 28.275156%;",
-		mobileStyle: "inset: auto auto 3% 4.5%;",
-	},
-	{
-		key: "white-haired-reader",
-		src: url("/images/home-stickers/white-haired-reader.webp"),
-		initialStyle: "inset: 85.243092% auto auto 34.902135%;",
-	},
-	{
-		key: "brown-lightning",
-		src: url("/images/home-stickers/brown-lightning.webp"),
-		initialStyle: "inset: 84.653289% auto auto 74.681250%;",
-		mobileStyle: "inset: auto auto 3% 80.5%;",
-	},
-	{
-		key: "pink-cat",
-		src: url("/images/home-stickers/pink-cat.webp"),
-		initialStyle: "inset: 86.495175% auto auto 81.020312%;",
-	},
-	{
-		key: "bamboo-girl",
-		src: url("/images/home-stickers/bamboo-girl.webp"),
-		initialStyle: "inset: 86.281360% auto auto 53.490625%;",
-	},
-	{
-		key: "pink-uniform",
-		src: url("/images/home-stickers/pink-uniform.webp"),
-		initialStyle: "inset: 86.343640% auto auto 41.756979%;",
-	},
+	// 以下角色贴纸暂时隐藏，恢复时取消注释
+	// {
+	// 	key: "coder",
+	// 	src: url("/monthly-2026-08/loading-girl.webp"),
+	// 	initialStyle: "inset: 83.320066% auto auto 18.718750%;",
+	// 	mobileStyle: "inset: auto auto 3% 29.5%;",
+	// },
+	// {
+	// 	key: "blonde",
+	// 	src: url("/images/home-stickers/blonde-idol.webp"),
+	// 	initialStyle: "inset: 42.073794% auto auto 56.985938%;",
+	// 	defaultStyle: "inset: 42.073794% auto auto 56.985938%;",
+	// 	nationalDayStyle: "inset: 42.1053% auto auto 59.4271%;",
+	// 	mobileStyle: "inset: auto auto 3% 55.5%;",
+	// },
+	// {
+	// 	key: "dark",
+	// 	src: url("/images/home-stickers/dark-haired-girl.webp"),
+	// 	initialStyle: "inset: 36.321820% auto auto 36.997969%;",
+	// },
+	// {
+	// 	key: "pink-bows",
+	// 	src: url("/images/home-stickers/pink-bows.webp"),
+	// 	initialStyle: "inset: 85.879934% auto auto 67.690625%;",
+	// },
+	// {
+	// 	key: "aqua-singer",
+	// 	src: url("/images/home-stickers/aqua-singer.webp"),
+	// 	initialStyle: "inset: 85.100877% auto auto 60.510937%;",
+	// },
+	// {
+	// 	key: "blue-witch",
+	// 	src: url("/images/home-stickers/blue-witch.webp"),
+	// 	initialStyle: "inset: 84.791667% auto auto 28.275156%;",
+	// 	mobileStyle: "inset: auto auto 3% 4.5%;",
+	// },
+	// {
+	// 	key: "white-haired-reader",
+	// 	src: url("/images/home-stickers/white-haired-reader.webp"),
+	// 	initialStyle: "inset: 85.243092% auto auto 34.902135%;",
+	// },
+	// {
+	// 	key: "brown-lightning",
+	// 	src: url("/images/home-stickers/brown-lightning.webp"),
+	// 	initialStyle: "inset: 84.653289% auto auto 74.681250%;",
+	// 	mobileStyle: "inset: auto auto 3% 80.5%;",
+	// },
+	// {
+	// 	key: "pink-cat",
+	// 	src: url("/images/home-stickers/pink-cat.webp"),
+	// 	initialStyle: "inset: 86.495175% auto auto 81.020312%;",
+	// },
+	// {
+	// 	key: "bamboo-girl",
+	// 	src: url("/images/home-stickers/bamboo-girl.webp"),
+	// 	initialStyle: "inset: 86.281360% auto auto 53.490625%;",
+	// },
+	// {
+	// 	key: "pink-uniform",
+	// 	src: url("/images/home-stickers/pink-uniform.webp"),
+	// 	initialStyle: "inset: 86.343640% auto auto 41.756979%;",
+	// },
 ];
 
 const quoteSticker = stickerImages.find((sticker) => sticker.key === "quote");
 const floatingStickerImages = stickerImages.filter(
 	(sticker) => sticker.key !== "quote",
 );
-const mobileStickerKeys = [
-	"coder",
-	"blonde",
-	"brown-lightning",
-	"blue-witch",
-	"anniversary-77",
-];
+// 已隐藏的贴纸需同步移除，避免移动端重定位找不到对应元素
+const mobileStickerKeys = ["anniversary-77"];
 ---
 
 <div class="home-wallpaper-decor" data-home-wallpaper-decor>

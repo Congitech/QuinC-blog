@@ -5,12 +5,11 @@ export const analyticsConfig: AnalyticsConfig = {
 	googleAnalyticsId: "",
 	microsoftClarityId: "",
 	umamiAnalytics: {
-		websiteId: "67934a32-e1f0-4819-b12b-782ee070138a",
-		scriptUrl: "https://cloud.umami.is/script.js",
-		// 官方 Cloud 不需要反代，留空即可
+		websiteId: "",
+		scriptUrl: "",
 		hostUrl: "",
-		shareId: "SrdL9mFmRTDji3LT",
-		shareApiBase: "https://cloud.umami.is",
+		shareId: "",
+		shareApiBase: "",
 		historicalStats: {
 			visitors: 0,
 			pageviews: 0,

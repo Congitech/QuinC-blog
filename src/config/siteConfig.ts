@@ -115,10 +115,6 @@ export const siteConfig: SiteConfig = {
 		// 追番页面开关
 		// 暂时关闭：需要先填入你自己的 Bilibili UID
 		anime: false,
-		// 站点统计页面开关
-		// 暂时关闭：Umami Cloud 已不再开放 /api/share/ 接口，站内图表取不到数据。
-		// 采集侧 scriptUrl 仍然正常，数据可在 Umami 后台查看。
-		analytics: false,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
