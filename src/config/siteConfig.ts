@@ -9,7 +9,7 @@ export const siteConfig: SiteConfig = {
 	title: "QuinC",
 
 	// 站点副标题
-	subtitle: "",
+	subtitle: "Blog",
 
 	// Aemeath 主题版本
 	themeVersion: "V4.1.6",
@@ -77,7 +77,7 @@ export const siteConfig: SiteConfig = {
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
 			type: "image",
-			value: "assets/images/avatar.webp",
+			value: "assets/images/wolf.jpg",
 			alt: "QuinC",
 		},
 		// 导航栏标题
@@ -102,11 +102,11 @@ export const siteConfig: SiteConfig = {
 	// 页面开关配置 - 控制特定页面的访问权限，设为false会返回404并自动隐藏对应的导航栏菜单项
 	pages: {
 		// 友链页面开关
-		friends: true,
+		friends: false,
 		// 打赏页面开关
-		sponsor: true,
+		sponsor: false,
 		// 留言板页面开关，需要配置评论系统
-		guestbook: true,
+		guestbook: false,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐
 		// 暂时关闭：需要先填入你自己的 Bangumi 用户 ID
 		bangumi: false,
@@ -115,6 +115,10 @@ export const siteConfig: SiteConfig = {
 		// 追番页面开关
 		// 暂时关闭：需要先填入你自己的 Bilibili UID
 		anime: false,
+		// 站点统计页面开关
+		// 暂时关闭：Umami Cloud 已不再开放 /api/share/ 接口，站内图表取不到数据。
+		// 采集侧 scriptUrl 仍然正常，数据可在 Umami 后台查看。
+		analytics: false,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航

@@ -6,9 +6,10 @@ import { url } from "@/utils/url-utils";
 
 const quickLinks = [
 	{ label: "文章", href: url("/archive/") },
-	{ label: "友链", href: url("/friends/") },
-	{ label: "朋友圈", href: url("/moments/") },
-	{ label: "留言板", href: url("/guestbook/") },
+	// 友链 / 朋友圈 / 留言板暂时隐藏，恢复时取消注释
+	// { label: "友链", href: url("/friends/") },
+	// { label: "朋友圈", href: url("/moments/") },
+	// { label: "留言板", href: url("/guestbook/") },
 	{ label: "关于", href: url("/about/") },
 ];
 
@@ -38,7 +39,7 @@ const socialLinks = [
 	{
 		name: "RSS",
 		icon: "material-symbols:rss-feed-rounded",
-		url: url("/rss.xml"),
+		url: url("/rss/"),
 		showName: false,
 	},
 ];

@@ -34,17 +34,17 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		],
 	});
 
-	// 站点统计
-	links.push(LinkPresets.Analytics);
+	// 站点统计（暂时隐藏，恢复时取消注释）
+	// links.push(LinkPresets.Analytics);
 
 	// 友链
 	links.push(LinkPresets.Friends);
 
-	// 朋友圈
-	links.push(LinkPresets.Moments);
+	// 朋友圈（暂时隐藏，恢复时取消注释）
+	// links.push(LinkPresets.Moments);
 
-	// 留言板
-	links.push(LinkPresets.Guestbook);
+	// 留言板（暂时隐藏，恢复时取消注释）
+	// links.push(LinkPresets.Guestbook);
 
 	// 我的及其子菜单
 	links.push({
@@ -92,8 +92,8 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		],
 	});
 
-	// 开往：独立博客友链接力，放在“关于”右侧
-	links.push(LinkPresets.Travellings);
+	// 开往：独立博客友链接力，放在“关于”右侧（暂时隐藏，恢复时取消注释）
+	// links.push(LinkPresets.Travellings);
 
 	// 文档链接
 	// links.push({

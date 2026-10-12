@@ -6,7 +6,7 @@ export const profileConfig: ProfileConfig = {
 	// 1. public 目录（以 "/" 开头，不优化）："/assets/images/avatar.webp"
 	// 2. src 目录（不以 "/" 开头，自动优化但会增加构建时间，推荐）："assets/images/avatar.webp"
 	// 3. 远程 URL："https://example.com/avatar.jpg"
-	avatar: "assets/images/avatar.webp",
+	avatar: "assets/images/wolf.jpg",
 
 	// 名字
 	name: "QuinC",
@@ -31,6 +31,18 @@ export const profileConfig: ProfileConfig = {
 			icon: "fa7-brands:github",
 			url: "https://github.com/Congitech",
 			showName: false,
+		},
+		{
+			name:"微信",
+			icon:"fa7-brands:weixin",
+			url: "copy:13702695849",
+			showName: false
+		},
+		{
+			name:"bilibili",
+			icon:"simple-icons:bilibili",
+			url: "https://space.bilibili.com/2036305433?spm_id_from=333.1007.0.0",
+			showName: false
 		},
 	],
 };
