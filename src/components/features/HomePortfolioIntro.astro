@@ -8,31 +8,10 @@ interface Props {
 }
 
 const { initialHome = false } = Astro.props;
-const defaultCharacter =
-	homePortfolioIntroSettings.characters.find(
-		(character) =>
-			character.id === homePortfolioIntroSettings.defaultCharacterId,
-	) ?? homePortfolioIntroSettings.characters[0];
-const desktopBanners = homePortfolioIntroSettings.banners.desktop;
-const mobileBanners = homePortfolioIntroSettings.banners.mobile;
-const defaultTopBanner =
-	desktopBanners.top.find(
-		(banner) => banner.id === homePortfolioIntroSettings.defaultTopBannerId,
-	) ?? desktopBanners.top[0];
-const defaultBottomBanner =
-	desktopBanners.bottom.find(
-		(banner) => banner.id === homePortfolioIntroSettings.defaultBottomBannerId,
-	) ?? desktopBanners.bottom[0];
-const defaultMobileTopBanner =
-	mobileBanners.top.find(
-		(banner) =>
-			banner.id === homePortfolioIntroSettings.defaultMobileTopBannerId,
-	) ?? mobileBanners.top[0];
-const defaultMobileBottomBanner =
-	mobileBanners.bottom.find(
-		(banner) =>
-			banner.id === homePortfolioIntroSettings.defaultMobileBottomBannerId,
-	) ?? mobileBanners.bottom[0];
+
+// 静态构建无法随机，这里用第一套主题兜底首屏；
+// 真正的选择交给运行时脚本，开屏播放前会替换成随机结果。
+const fallbackTheme = homePortfolioIntroSettings.themes[0];
 const initialStyle = initialHome
 	? "position: fixed; inset: 0; z-index: 49; background: #f8e4ad;"
 	: undefined;
@@ -43,26 +22,21 @@ const initialStyle = initialHome
 	class:list={["home-portfolio-intro", initialHome && "home-portfolio-intro--boot"]}
 	style={initialStyle}
 	data-enabled-storage-key={homePortfolioIntroSettings.enabledStorageKey}
-	data-character-storage-key={homePortfolioIntroSettings.characterStorageKey}
-	data-top-banner-storage-key={homePortfolioIntroSettings.topBannerStorageKey}
-	data-bottom-banner-storage-key={homePortfolioIntroSettings.bottomBannerStorageKey}
-	data-default-character={homePortfolioIntroSettings.defaultCharacterId}
-	data-default-top-banner={homePortfolioIntroSettings.defaultTopBannerId}
-	data-default-bottom-banner={homePortfolioIntroSettings.defaultBottomBannerId}
-	data-default-mobile-top-banner={homePortfolioIntroSettings.defaultMobileTopBannerId}
-	data-default-mobile-bottom-banner={homePortfolioIntroSettings.defaultMobileBottomBannerId}
-	data-character-options={JSON.stringify(homePortfolioIntroSettings.characters)}
-	data-banner-options={JSON.stringify(homePortfolioIntroSettings.banners)}
+	data-randomize-theme={String(homePortfolioIntroSettings.randomizeTheme)}
+	data-themes={JSON.stringify(homePortfolioIntroSettings.themes)}
 	aria-hidden="true"
 >
 	<div class="home-portfolio-intro__backdrop"></div>
 	<div class="home-portfolio-intro__scenes">
 		<picture>
-			<source media="(max-width: 779px)" srcset={initialHome ? defaultMobileTopBanner.src : undefined} />
+			<source
+				media="(max-width: 779px)"
+				srcset={initialHome ? fallbackTheme.banners.mobile.top.src : undefined}
+			/>
 			<img
 				class="home-portfolio-intro__scene home-portfolio-intro__scene--top"
-				src={initialHome ? defaultTopBanner.src : undefined}
-				data-banner-id={defaultTopBanner.id}
+				src={initialHome ? fallbackTheme.banners.desktop.top.src : undefined}
+				data-banner-id={fallbackTheme.banners.desktop.top.id}
 				alt=""
 				aria-hidden="true"
 				decoding="async"
@@ -70,11 +44,14 @@ const initialStyle = initialHome
 			/>
 		</picture>
 		<picture>
-			<source media="(max-width: 779px)" srcset={initialHome ? defaultMobileBottomBanner.src : undefined} />
+			<source
+				media="(max-width: 779px)"
+				srcset={initialHome ? fallbackTheme.banners.mobile.bottom.src : undefined}
+			/>
 			<img
 				class="home-portfolio-intro__scene home-portfolio-intro__scene--bottom"
-				src={initialHome ? defaultBottomBanner.src : undefined}
-				data-banner-id={defaultBottomBanner.id}
+				src={initialHome ? fallbackTheme.banners.desktop.bottom.src : undefined}
+				data-banner-id={fallbackTheme.banners.desktop.bottom.id}
 				alt=""
 				aria-hidden="true"
 				decoding="async"
@@ -84,14 +61,14 @@ const initialStyle = initialHome
 	</div>
 	<div class="home-portfolio-intro__band">
 		<div class="home-portfolio-intro__title" aria-hidden="true">
-			<span class="home-portfolio-intro__word home-portfolio-intro__word--left">鸣潮</span>
-			<span class="home-portfolio-intro__word home-portfolio-intro__word--right">往复</span>
+			<span class="home-portfolio-intro__word home-portfolio-intro__word--left">{fallbackTheme.title.left}</span>
+			<span class="home-portfolio-intro__word home-portfolio-intro__word--right">{fallbackTheme.title.right}</span>
 		</div>
 	</div>
 	<img
 		class="home-portfolio-intro__character"
-		src={initialHome ? defaultCharacter.src : undefined}
-		data-character-id={defaultCharacter.id}
+		src={initialHome ? fallbackTheme.character.src : undefined}
+		data-character-id={fallbackTheme.character.id}
 		alt=""
 		aria-hidden="true"
 		decoding="async"
@@ -116,37 +93,14 @@ const initialStyle = initialHome
 		const introEnabledStorageKey =
 			intro?.getAttribute("data-enabled-storage-key") ||
 			"rainzt.home-portfolio-intro-enabled.v1";
-		const introCharacterStorageKey =
-			intro?.getAttribute("data-character-storage-key") ||
-			"rainzt.home-portfolio-intro-character.v1";
-		const introTopBannerStorageKey =
-			intro?.getAttribute("data-top-banner-storage-key") ||
-			"rainzt.home-portfolio-intro-top-banner.v1";
-		const introBottomBannerStorageKey =
-			intro?.getAttribute("data-bottom-banner-storage-key") ||
-			"rainzt.home-portfolio-intro-bottom-banner.v1";
-		const defaultCharacterId =
-			intro?.getAttribute("data-default-character") || "character-03";
-		const defaultTopBannerId =
-			intro?.getAttribute("data-default-top-banner") || "wuthering";
-		const defaultBottomBannerId =
-			intro?.getAttribute("data-default-bottom-banner") || "wuthering";
-		const defaultMobileTopBannerId =
-			intro?.getAttribute("data-default-mobile-top-banner") || "wuthering";
-		const defaultMobileBottomBannerId =
-			intro?.getAttribute("data-default-mobile-bottom-banner") || "wuthering";
-		const characterOptions = (() => {
+		const randomizeTheme =
+			intro?.getAttribute("data-randomize-theme") !== "false";
+		const introThemes = (() => {
 			try {
-				return JSON.parse(intro?.getAttribute("data-character-options") || "[]");
+				const parsed = JSON.parse(intro?.getAttribute("data-themes") || "[]");
+				return Array.isArray(parsed) && parsed.length > 0 ? parsed : [];
 			} catch {
 				return [];
-			}
-		})();
-		const bannerOptions = (() => {
-			try {
-				return JSON.parse(intro?.getAttribute("data-banner-options") || "{}") || {};
-			} catch {
-				return {};
 			}
 		})();
 
@@ -160,63 +114,59 @@ const initialStyle = initialHome
 
 		const isIntroEnabled = () => readLocalStorage(introEnabledStorageKey) !== "0";
 
-		const getSelectedCharacter = () => {
-			const selectedId = readLocalStorage(introCharacterStorageKey) || defaultCharacterId;
-			return characterOptions.find((character) => character.id === selectedId)
-				|| characterOptions.find((character) => character.id === defaultCharacterId)
-				|| characterOptions[0];
+		// 每次进入首页重新随机，不写入 storage，保证刷新即换。
+		const pickRandomTheme = () => {
+			if (introThemes.length === 0) return null;
+			if (!randomizeTheme || introThemes.length === 1) return introThemes[0];
+			return introThemes[Math.floor(Math.random() * introThemes.length)];
 		};
 
-		const syncCharacter = (introElement) => {
-			const character = getSelectedCharacter();
-			const image = introElement?.querySelector(".home-portfolio-intro__character");
-			if (!character || !(image instanceof HTMLImageElement)) return;
-			if (image.getAttribute("src") !== character.src) image.setAttribute("src", character.src);
-			image.setAttribute("data-character-id", character.id);
-		};
+		const applyTheme = (introElement, theme) => {
+			if (!theme) return;
 
-		const getSelectedBanner = (position, storageKey, defaultId, mobileDefaultId) => {
-			// 桌面和手机使用两套完全独立的资源。手机端只取 mobile 的默认项，
-			// 不读取桌面端的 localStorage 选择，避免把宽幅横幅带到手机上。
-			const isMobile = window.matchMedia?.("(max-width: 779px)").matches ?? false;
-			const deviceOptions = bannerOptions?.[isMobile ? "mobile" : "desktop"];
-			const options = Array.isArray(deviceOptions?.[position])
-				? deviceOptions[position]
-				: Array.isArray(bannerOptions?.[position])
-					? bannerOptions[position]
-					: [];
-			const selectedDefaultId = isMobile ? mobileDefaultId : defaultId;
-			const selectedId = isMobile
-				? selectedDefaultId
-				: (readLocalStorage(storageKey) || selectedDefaultId);
-			return options.find((banner) => banner.id === selectedId)
-				|| options.find((banner) => banner.id === selectedDefaultId)
-				|| options[0];
-		};
-
-		const syncBanner = (introElement, position, storageKey, defaultId, mobileDefaultId) => {
-			const banner = getSelectedBanner(position, storageKey, defaultId, mobileDefaultId);
-			const image = introElement?.querySelector(`.home-portfolio-intro__scene--${position}`);
-			if (!banner || !(image instanceof HTMLImageElement)) return;
-			if (image.getAttribute("src") !== banner.src) image.setAttribute("src", banner.src);
-			image.setAttribute("data-banner-id", banner.id);
-		};
-
-		const syncBanners = (introElement) => {
-			syncBanner(
-				introElement,
-				"top",
-				introTopBannerStorageKey,
-				defaultTopBannerId,
-				defaultMobileTopBannerId,
+			const left = introElement?.querySelector(
+				".home-portfolio-intro__word--left",
 			);
-			syncBanner(
-				introElement,
-				"bottom",
-				introBottomBannerStorageKey,
-				defaultBottomBannerId,
-				defaultMobileBottomBannerId,
+			const right = introElement?.querySelector(
+				".home-portfolio-intro__word--right",
 			);
+			if (left) left.textContent = theme.title?.left ?? "";
+			if (right) right.textContent = theme.title?.right ?? "";
+
+			const isMobile =
+				window.matchMedia?.("(max-width: 779px)").matches ?? false;
+			const deviceBanners = isMobile ? theme.banners?.mobile : theme.banners?.desktop;
+
+			const character = introElement?.querySelector(
+				".home-portfolio-intro__character",
+			);
+			if (theme.character && character instanceof HTMLImageElement) {
+				if (character.getAttribute("src") !== theme.character.src) {
+					character.setAttribute("src", theme.character.src);
+				}
+				character.setAttribute("data-character-id", theme.character.id);
+			}
+
+			for (const position of ["top", "bottom"]) {
+				const banner = deviceBanners?.[position];
+				const image = introElement?.querySelector(
+					`.home-portfolio-intro__scene--${position}`,
+				);
+				if (banner && image instanceof HTMLImageElement) {
+					if (image.getAttribute("src") !== banner.src) {
+						image.setAttribute("src", banner.src);
+					}
+					image.setAttribute("data-banner-id", banner.id);
+				}
+			}
+
+			// <picture><source> 只在首次解析时生效，移动端切换需同步 srcset
+			const mobileSource = introElement?.querySelector(
+				".home-portfolio-intro__scenes picture source",
+			);
+			if (isMobile && mobileSource && deviceBanners?.top) {
+				mobileSource.setAttribute("srcset", deviceBanners.top.src);
+			}
 		};
 
 		const hasSeenIntro = () => {
@@ -397,20 +347,13 @@ const initialStyle = initialHome
 			activeTimer = window.setTimeout(() => finishIntro(intro, token), 4275);
 		};
 
-		const previewIntro = (intro) => {
-			if (!isIntroEnabled() || !isHomePath()) return;
-			wasHome = true;
-			resetIntro(intro);
-			void playIntro(intro, { force: true, markSeen: false });
-		};
-
 		const syncIntro = () => {
 			const intro = document.getElementById("home-portfolio-intro");
 			if (!intro) return;
 			const onHome = isHomePath();
 			if (onHome) {
-				syncCharacter(intro);
-				syncBanners(intro);
+				// 每次回到首页都重新抽一次，保证刷新或重新进入能看到不同主题
+				applyTheme(intro, pickRandomTheme());
 			}
 			if (!isIntroEnabled()) {
 				resetIntro(intro);
@@ -443,8 +386,7 @@ const initialStyle = initialHome
 			const intro = document.getElementById("home-portfolio-intro");
 			if (!intro) return;
 			if (isHomePath()) {
-				syncCharacter(intro);
-				syncBanners(intro);
+				applyTheme(intro, pickRandomTheme());
 			}
 			const detail = event instanceof CustomEvent ? event.detail : undefined;
 			if (!isIntroEnabled()) {
@@ -452,10 +394,7 @@ const initialStyle = initialHome
 				notifyIntroComplete(intro);
 				return;
 			}
-			if (detail?.preview && isHomePath()) {
-				previewIntro(intro);
-				return;
-			}
+			// 设置面板只保留「是否播放」，开启时重播一次让访客看到新抽到的主题
 			if (detail?.enabled === true && isHomePath()) {
 				try {
 					window.sessionStorage.removeItem(introSessionKey);

@@ -54,7 +54,7 @@ export const blogChangelogEntries: BlogChangelogEntry[] = [
 			"广为网安实验室新生赛wp",
 			"RCE web学习",
 		],
-		tags: ["ctf", "导航", "web"],
+		tags: ["ctf", "web"],
 		tone: "content",
 	},
 	{
