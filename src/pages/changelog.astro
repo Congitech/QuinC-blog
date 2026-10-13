@@ -17,6 +17,31 @@ const noticeArticles = Array.from(noticeHtml.matchAll(articlePattern)).map(
 
 const notices = [
 	{
+		version: "2026-10-13-1",
+		kicker: "UPDATE / 2026.10.13-1",
+		title: "开屏多主题与浏览性能更新",
+		desc: "首页开屏改为每次进入随机切换主题，同时针对 Edge 浏览器的滚动卡顿做了定向优化。",
+		brief: "开屏主题随机化、Edge 性能优化、闪烁修复",
+		sections: {
+			summary: "quinc-20261013-1-summary",
+			"sheet-maker": "quinc-20261013-1-content",
+			"bulk-import": "quinc-20261013-1-content",
+			universal: "quinc-20261013-1-stack",
+			interface: "quinc-20261013-1-summary",
+			safety: "quinc-20261013-1-fix",
+			checklist: "quinc-20261013-1-plan",
+		},
+		labels: {
+			summary: "公告摘要",
+			"sheet-maker": "开屏主题",
+			"bulk-import": "开屏主题",
+			universal: "性能与体积",
+			interface: "公告摘要",
+			safety: "修复",
+			checklist: "后续",
+		},
+	},
+	{
 		version: "2026-10-13",
 		kicker: "UPDATE / 2026.10.13",
 		title: "QuinC 站点正式上线",

@@ -4,6 +4,40 @@
   新增公告时：复制一个 article，改 data-notice-version，替换内部锚点 id，
   同时在 changelog.astro 的 notices 数组里加同名 version 的元数据。
 -->
+<article class="notice-main notice-view" data-notice-version="2026-10-13-1">
+	<h2 id="quinc-20261013-1-summary">开屏多主题与浏览性能更新</h2>
+	<p>
+		本次更新围绕首页开屏展开：开屏不再固定展示同一套画面，而是每次进入随机切换；
+		同时针对 Edge 浏览器的滚动卡顿做了定向优化。
+	</p>
+
+	<h3 id="quinc-20261013-1-content">开屏主题随机化</h3>
+	<ul>
+		<li>新增原神与崩坏星穹铁道两套主题，连同原有鸣潮共三套</li>
+		<li>每套主题包含中央文字、角色立绘与上下两幅快门横幅</li>
+		<li>文字分别为「鸣潮 / 往复」「原神 / NB」「愿此行 / 终抵群星」</li>
+		<li>主题在进入首页时随机抽取，不写入本地存储，刷新或重新进入都会切换</li>
+		<li>设置面板中的角色与横幅手动选择已移除，只保留播放开关</li>
+	</ul>
+
+	<h3 id="quinc-20261013-1-stack">性能与体积</h3>
+	<ul>
+		<li>排查发现全站毛玻璃效果共 131 处，导航栏独占 49 处，滚动时状态切换会频繁触发重算</li>
+		<li>新增浏览器检测，在 Edge 下关闭导航栏模糊并补足半透明底色，保持可读性</li>
+		<li>卡片、按钮等静态位置的毛玻璃效果保留，不影响观感</li>
+		<li>新增的 9 张开屏素材统一转为 webp，体积从 38MB 压缩至 1.8MB</li>
+	</ul>
+
+	<h3 id="quinc-20261013-1-fix">修复</h3>
+	<ul>
+		<li>修复同一次进入首页会连续重抽多次、表现为画面闪烁的问题</li>
+		<li>修复 RSS 图标直接打开 XML 源码的问题，改为跳转到订阅说明页</li>
+	</ul>
+
+	<h3 id="quinc-20261013-1-plan">后续</h3>
+	<p>开屏主题会继续扩充，也会根据实际观感调整构图与配色。</p>
+</article>
+
 <article class="notice-main notice-view" data-notice-version="2026-10-13">
 	<h2 id="quinc-20261013-summary">QuinC 站点正式上线</h2>
 	<p>
