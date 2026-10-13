@@ -3,10 +3,11 @@ import type { BackgroundWallpaperConfig } from "@/types/backgroundWallpaper";
 export const homepageWallpaper = "/assets/images/wallpaper/homepage-anniversary-fireworks-20260930.webp";
 export const alternateHomepageWallpaper = "/assets/images/wallpaper/homepage-anniversary-blossoms.webp";
 export const mobileHomepageWallpaper = "/assets/images/wallpaper/homepage-anniversary-mobile-20260930.webp";
+// 原始壁纸，01~15 已下线，现从 16 开始
 const originalWallpaperImages = Array.from(
-	{ length: 24 },
+	{ length: 9 },
 	(_, index) =>
-		`/assets/images/wallpaper/wallpaper-${String(index + 1).padStart(2, "0")}.webp`,
+		`/assets/images/wallpaper/wallpaper-${String(index + 16).padStart(2, "0")}.webp`,
 );
 
 const importedWutheringWavesImages = Array.from(
@@ -15,11 +16,8 @@ const importedWutheringWavesImages = Array.from(
 		`/assets/images/wallpaper/wallpaper-${String(index + 25).padStart(2, "0")}.webp`,
 );
 
-const wutheringWavesWallpaperImages = [
-	originalWallpaperImages[0],
-	...importedWutheringWavesImages,
-];
-const otherWallpaperImages = originalWallpaperImages.slice(1);
+const wutheringWavesWallpaperImages = [...importedWutheringWavesImages];
+const otherWallpaperImages = originalWallpaperImages;
 
 // 自定义壁纸（桌面端），接在 wallpaper-47.webp 之后
 const customDesktopWallpaperImages = Array.from(

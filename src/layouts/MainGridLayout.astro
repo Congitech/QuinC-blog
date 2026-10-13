@@ -568,7 +568,13 @@ const hasMultipleImages =
 
             function isFixedWallpaperSelected() {
                 var wrapper = document.getElementById('wallpaper-wrapper');
-                return !!(wrapper && wrapper.hasAttribute('data-selected-wallpaper'));
+                if (!wrapper || !wrapper.hasAttribute('data-selected-wallpaper')) return false;
+                // 「固定显示某张壁纸」依赖外观设置面板里的取消按钮。
+                // 该面板若已下线，访客将没有任何途径退出固定状态，轮播会被永久禁用，
+                // 因此这时忽略固定标记，让轮播恢复正常。面板恢复后行为自动回到原样。
+                var canUnselectWallpaper = !!document.getElementById('display-settings-switch');
+                if (!canUnselectWallpaper) return false;
+                return true;
             }
 
             // 获取当前设备可见的 slide-item
