@@ -92,8 +92,9 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		],
 	});
 
-	// 开往：独立博客友链接力，放在“关于”右侧
-	links.push(LinkPresets.Travellings);
+	// 开往：独立博客友链接力，放在“关于”右侧（暂时隐藏，恢复时取消注释）
+	// 外链没有对应页面开关，无法用 pageKey 过滤，只能在这里注释
+	// links.push(LinkPresets.Travellings);
 
 	// 文档链接
 	// links.push({
@@ -162,6 +163,8 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "朋友圈",
 		url: "/moments/",
 		icon: "material-symbols:rss-feed-rounded",
+		// 朋友圈依赖友链数据，跟随友链开关一起隐藏
+		pageKey: "friends",
 	},
 	Sponsor: {
 		name: "打赏",
@@ -189,6 +192,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "站点统计",
 		url: "/analytics/",
 		icon: "material-symbols:monitoring-rounded",
+		pageKey: "analytics",
 	},
 	BlogChangelog: {
 		name: "博客日志",

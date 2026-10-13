@@ -1,8 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
 import AnalyticsSnapshot from "@/components/widget/AnalyticsSnapshot.astro";
-import { analyticsConfig, commentConfig } from "@/config";
+import { analyticsConfig, commentConfig, siteConfig } from "@/config";
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+// 暂时关闭：Umami Cloud 已不再开放 /api/share/ 接口，站内图表取不到数据。
+// 采集侧 scriptUrl 仍正常上报，数据可在 Umami 后台查看。
+if (!siteConfig.pages.analytics) {
+	return Astro.redirect("/404/");
+}
 
 const umamiAnalytics = analyticsConfig.umamiAnalytics;
 const shareId = umamiAnalytics?.shareId ?? "";
