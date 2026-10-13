@@ -351,8 +351,10 @@ const initialStyle = initialHome
 			const intro = document.getElementById("home-portfolio-intro");
 			if (!intro) return;
 			const onHome = isHomePath();
-			if (onHome) {
-				// 每次回到首页都重新抽一次，保证刷新或重新进入能看到不同主题
+			// 只在「首次进入」或「从其他页面回到首页」时抽一次。
+			// Swup 一次跳转会连续派发 page-load / contentReplaced / page:view / pageshow，
+			// 若每次都重抽，同一次进入会连续换好几次主题，表现为画面闪烁。
+			if (onHome && !wasHome) {
 				applyTheme(intro, pickRandomTheme());
 			}
 			if (!isIntroEnabled()) {

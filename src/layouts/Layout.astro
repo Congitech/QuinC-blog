@@ -124,6 +124,24 @@ const canonicalUrl = new URL(
 <html lang={siteLang} class="bg-(--page-bg) text-[14px] md:text-[16px]" data-wallpaper-mode={backgroundWallpaper.mode} data-card-decoration="flat" data-national-day-theme={String(nationalDayTheme.defaultEnabled)}>
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      // Edge(Chromium) 对 backdrop-filter 的合成性能明显弱于 Chrome，
+      // 滚动时导航栏频繁切换 .scrolled 会重算模糊，导致掉帧卡顿。
+      // 这里提前打标记，供 CSS 做降级处理，必须在首次绘制前执行。
+      (function detectBrowserPerf() {
+        try {
+          var ua = navigator.userAgent;
+          var isEdge = /Edg\/|Edge\//.test(ua);
+          var isFirefox = /Firefox\//.test(ua) && !isEdge;
+          var root = document.documentElement;
+          if (isEdge) root.setAttribute("data-perf", "edge");
+          else if (isFirefox) root.setAttribute("data-perf", "firefox");
+          else root.setAttribute("data-perf", "chromium");
+        } catch (e) {
+          document.documentElement.setAttribute("data-perf", "chromium");
+        }
+      })();
+    </script>
     {analyticsConfig?.googleAnalyticsId && (
             <GoogleAnalytics analyticsId={analyticsConfig.googleAnalyticsId} />
     )}

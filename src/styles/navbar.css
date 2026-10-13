@@ -1613,3 +1613,59 @@ body.wallpaper-transparent #navbar.firefly-navbar.scrolled > .firefly-nav-shell 
         backdrop-filter: blur(16px) saturate(1.1) !important;
     }
 }
+
+/* ============================================
+ * Edge 性能降级
+ * Edge(Chromium) 的 backdrop-filter 合成开销高于 Chrome，
+ * 导航栏在滚动时频繁切换 .scrolled 会重算模糊层，表现为滚动掉帧。
+ * 这里把导航栏与常驻悬浮控件的模糊降级为高不透明度纯色，
+ * 视觉仍是"半透质感"，但不再触发逐帧模糊计算。
+ * ============================================ */
+html[data-perf="edge"] #navbar,
+html[data-perf="edge"] #navbar>div,
+html[data-perf="edge"] #navbar .firefly-nav-shell,
+html[data-perf="edge"] #navbar-wrapper {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* 降级后补足底色，避免内容透出导致可读性下降 */
+html[data-perf="edge"] body:has(#wallpaper-wrapper) #navbar>div {
+    background: color-mix(in oklab, var(--card-bg) 92%, transparent) !important;
+}
+
+html[data-perf="edge"] #navbar.scrolled>div,
+html[data-perf="edge"] #navbar.scrolled .firefly-nav-shell {
+    background: color-mix(in oklab, var(--card-bg) 96%, transparent) !important;
+}
+
+/* 移动端固定控件同理 */
+@media (max-width: 767px) {
+    html[data-perf="edge"] #navbar.firefly-navbar.scrolled > .firefly-nav-shell {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: color-mix(in oklab, var(--card-bg) 97%, transparent) !important;
+    }
+}
+
+/* ============================================
+ * 滚动重绘优化（所有浏览器）
+ * 导航栏在滚动中只切换 transform / opacity / background-color，
+ * 这三者可由合成器处理，避免每帧重算模糊与阴影。
+ * ============================================ */
+@media (prefers-reduced-motion: no-preference) {
+    #navbar {
+        will-change: transform, opacity;
+        transform: translateZ(0);
+    }
+
+    /* 非滚动状态下不给 backdrop-filter 容器挂 will-change，
+       避免长期占用额外的合成层。 */
+    #navbar:not(.scrolled) .firefly-nav-shell {
+        will-change: auto;
+    }
+
+    #navbar.scrolled .firefly-nav-shell {
+        will-change: transform, opacity;
+    }
+}

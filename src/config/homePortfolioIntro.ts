@@ -94,130 +94,87 @@ export const homePortfolioIntroSettings: {
 				},
 			},
 		},
+		// 原神 · 胡桃
 		{
-			// 崩坏3 素材（爱弥斯 / 菲比系列）
-			id: "honkai3",
-			label: "崩坏3",
+			id: "genshin",
+			label: "原神",
 			title: {
-				left: "崩坏",
-				right: "3rd",
+				left: "原神",
+				right: "NB",
 			},
 			character: {
-				id: "character-honkai3",
-				label: "菲比",
-				src: "/assets/images/home-truncated/b-1.webp",
-				thumbnail: "/assets/images/home-truncated/b-1.webp",
+				id: "character-genshin",
+				label: "胡桃",
+				src: "/assets/images/home-truncated/character-genshin.webp",
+				thumbnail: "/assets/images/home-truncated/character-genshin.webp",
 			},
 			banners: {
 				desktop: {
 					top: {
-						id: "honkai3",
-						label: "菲比",
-						src: "/assets/images/home-truncated/b-2.webp",
+						id: "genshin",
+						label: "胡桃",
+						src: "/assets/images/home-truncated/intro-banner-top-genshin.webp",
 					},
 					bottom: {
-						id: "honkai3",
-						label: "弗洛洛达妮娅菲比",
-						src: "/assets/images/home-truncated/b-3.webp",
+						id: "genshin",
+						label: "胡桃",
+						src: "/assets/images/home-truncated/intro-banner-bottom-genshin.webp",
 					},
 				},
 				mobile: {
 					top: {
-						id: "honkai3",
-						label: "菲比",
-						src: "/assets/images/home-truncated/b-2.webp",
+						id: "genshin",
+						label: "胡桃",
+						src: "/assets/images/home-truncated/intro-banner-mobile-top-genshin.webp",
 					},
 					bottom: {
-						id: "honkai3",
-						label: "弗洛洛达妮娅菲比",
-						src: "/assets/images/home-truncated/b-3.webp",
+						id: "genshin",
+						label: "胡桃",
+						src: "/assets/images/home-truncated/intro-banner-mobile-bottom-genshin.webp",
 					},
 				},
 			},
 		},
-		// 素材未到位，暂时不参与随机，避免抽到空图。补齐下面 12 张图后取消注释即可。
-		// 原神 · 胡桃
-		// {
-		// 	id: "genshin",
-		// 	label: "原神",
-		// 	title: {
-		// 		left: "原神",
-		// 		right: "虚构",
-		// 	},
-		// 	character: {
-		// 		id: "character-hutao",
-		// 		label: "胡桃",
-		// 		src: "/assets/images/home-truncated/character-hutao.webp",
-		// 		thumbnail: "/assets/images/home-truncated/character-hutao.webp",
-		// 	},
-		// 	banners: {
-		// 		desktop: {
-		// 			top: {
-		// 				id: "genshin",
-		// 				label: "胡桃",
-		// 				src: "/assets/images/home-truncated/intro-banner-top-genshin.webp",
-		// 			},
-		// 			bottom: {
-		// 				id: "genshin",
-		// 				label: "胡桃",
-		// 				src: "/assets/images/home-truncated/intro-banner-bottom-genshin.webp",
-		// 			},
-		// 		},
-		// 		mobile: {
-		// 			top: {
-		// 				id: "genshin",
-		// 				label: "胡桃",
-		// 				src: "/assets/images/home-truncated/intro-banner-mobile-top-genshin.webp",
-		// 			},
-		// 			bottom: {
-		// 				id: "genshin",
-		// 				label: "胡桃",
-		// 				src: "/assets/images/home-truncated/intro-banner-mobile-bottom-genshin.webp",
-		// 			},
-		// 		},
-		// 	},
-		// },
-		// 崩坏：星穹铁道 · 银狼
-		// {
-		// 	id: "hsr",
-		// 	label: "崩坏：星穹铁道",
-		// 	title: {
-		// 		left: "愿此行",
-		// 		right: "终抵群星",
-		// 	},
-		// 	character: {
-		// 		id: "character-silverwolf",
-		// 		label: "银狼",
-		// 		src: "/assets/images/home-truncated/character-silverwolf.webp",
-		// 		thumbnail: "/assets/images/home-truncated/character-silverwolf.webp",
-		// 	},
-		// 	banners: {
-		// 		desktop: {
-		// 			top: {
-		// 				id: "hsr",
-		// 				label: "银狼",
-		// 				src: "/assets/images/home-truncated/intro-banner-top-hsr.webp",
-		// 			},
-		// 			bottom: {
-		// 				id: "hsr",
-		// 				label: "银狼",
-		// 				src: "/assets/images/home-truncated/intro-banner-bottom-hsr.webp",
-		// 			},
-		// 		},
-		// 		mobile: {
-		// 			top: {
-		// 				id: "hsr",
-		// 				label: "银狼",
-		// 				src: "/assets/images/home-truncated/intro-banner-mobile-top-hsr.webp",
-		// 			},
-		// 			bottom: {
-		// 				id: "hsr",
-		// 				label: "银狼",
-		// 				src: "/assets/images/home-truncated/intro-banner-mobile-bottom-hsr.webp",
-		// 			},
-		// 		},
-		// 	},
-		// },
+		{
+			id: "hsr",
+			label: "崩坏：星穹铁道",
+			title: {
+				left: "愿此行",
+				right: "终抵群星",
+			},
+			character: {
+				id: "character-silverwolf",
+				label: "银狼",
+				src: "/assets/images/home-truncated/character-silverwolf.webp",
+				thumbnail: "/assets/images/home-truncated/character-silverwolf.webp",
+			},
+			banners: {
+				desktop: {
+					top: {
+						id: "hsr",
+						label: "银狼",
+						src: "/assets/images/home-truncated/intro-banner-top-hsr.webp",
+					},
+					bottom: {
+						id: "hsr",
+						label: "银狼",
+						src: "/assets/images/home-truncated/intro-banner-bottom-hsr.webp",
+					},
+				},
+				mobile: {
+					top: {
+						id: "hsr",
+						label: "银狼",
+						src: "/assets/images/home-truncated/intro-banner-mobile-top-hsr.webp",
+					},
+					bottom: {
+						id: "hsr",
+						label: "银狼",
+						src: "/assets/images/home-truncated/intro-banner-mobile-bottom-hsr.webp",
+					},
+				},
+			},
+		},
 	],
 };
 
