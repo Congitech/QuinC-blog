@@ -44,6 +44,21 @@ export const blogChangelogEntries: BlogChangelogEntry[] = [
 	},
 	{
 		date: "2026-10-13",
+		version: "0.9.1",
+		displayDate: "2026 年 10 月 13 日",
+		kind: "内容",
+		title: "新增文章",
+		summary:
+			"把另外一个博客的文章搬了过来。",
+		details: [
+			"广为网安实验室新生赛wp",
+			"RCE web学习",
+		],
+		tags: ["ctf", "导航", "web"],
+		tone: "content",
+	},
+	{
+		date: "2026-10-13",
 		version: "0.9.0",
 		displayDate: "2026 年 10 月 13 日",
 		kind: "视觉",
@@ -76,4 +91,5 @@ export const blogChangelogEntries: BlogChangelogEntry[] = [
 		tags: ["RSS", "导航", "体验"],
 		tone: "fix",
 	},
+	
 ];

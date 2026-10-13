@@ -1,1 +1,65 @@
-<p>这里可以放你的站点更新公告。</p>
+<!--
+  公告内容文件。changelog.astro 用正则按 data-notice-version 提取每个 <article>，
+  并与页面内 notices 数组的 version 一一对应，两边缺一则该条不会渲染。
+  新增公告时：复制一个 article，改 data-notice-version，替换内部锚点 id，
+  同时在 changelog.astro 的 notices 数组里加同名 version 的元数据。
+-->
+<article class="notice-main notice-view" data-notice-version="2026-10-13">
+	<h2 id="quinc-20261013-summary">QuinC 站点正式上线</h2>
+	<p>
+		站点搭建完成并对外开放。定位为一份公开笔记，用来整理学习与折腾的过程，
+		目前主要写 CTF WriteUp 和技术笔记。
+	</p>
+
+	<h3 id="quinc-20261013-content">内容概览</h3>
+	<p>首批上线 7 篇文章，覆盖以下方向：</p>
+	<ul>
+		<li>HelloCTF RCE-labs 各关卡 WriteUp，共 4 篇</li>
+		<li>广外网实验室新生赛 WriteUp</li>
+		<li>建站过程记录与踩坑复盘</li>
+	</ul>
+	<p>文章以记录完整思考过程为主，不只给结论，尽量把当时卡住的地方和试错过程写下来。</p>
+
+	<h3 id="quinc-20261013-stack">技术构成</h3>
+	<ul>
+		<li>框架：Astro 7 + Svelte 组件，TypeScript 全量约束</li>
+		<li>部署：Cloudflare Workers 静态托管，Git 管理源码</li>
+		<li>内容：Markdown / MDX，站内支持归档、分类、标签三种浏览维度</li>
+		<li>订阅：提供 RSS 输出，另附订阅说明页便于复制地址</li>
+		<li>评论：接入 Waline，文章下方可直接留言</li>
+	</ul>
+
+	<h3 id="quinc-20261013-plan">后续计划</h3>
+	<ul>
+		<li>继续更新 CTF 题解，保持每周至少一篇</li>
+		<li>逐步补齐工具类与学习笔记类内容</li>
+		<li>视情况开放留言板与友链入口</li>
+	</ul>
+	<p>如果内容对你有帮助，欢迎通过文章下方的评论区留言交流。</p>
+</article>
+
+<article class="notice-main notice-view" data-notice-version="2026-10-12">
+	<h2 id="quinc-20261012-summary">站点框架搭建完成</h2>
+	<p>
+		完成基础框架搭建与主题定制，确定站点名称为 QuinC，域名为 quinc.cn，
+		并完成首次构建上线。
+	</p>
+
+	<h3 id="quinc-20261012-content">本次完成</h3>
+	<ul>
+		<li>搭建 Astro 博客框架，接入 Svelte 与 TypeScript</li>
+		<li>定制主题配置：站点标题、副标题、头像与站点图标</li>
+		<li>配置 Cloudflare Workers 静态托管与部署流程</li>
+		<li>建立 Git 仓库并推送至 GitHub</li>
+	</ul>
+
+	<h3 id="quinc-20261012-stack">踩坑记录</h3>
+	<p>部署环节遇到两个问题，简要记录以便后续排查：</p>
+	<ul>
+		<li>静态站点模式下，页面内重定向不会被执行，需要在构建产物层面处理</li>
+		<li>Git 推送到远端不等于重新部署，静态托管需要单独触发构建与发布</li>
+	</ul>
+
+	<h3 id="quinc-20261012-plan">下一步</h3>
+	<p>开始整理和迁移文章内容，逐步把学习笔记转为公开文章。</p>
+</article>
