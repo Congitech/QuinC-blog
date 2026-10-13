@@ -20,11 +20,20 @@ const wutheringWavesWallpaperImages = [
 	...importedWutheringWavesImages,
 ];
 const otherWallpaperImages = originalWallpaperImages.slice(1);
+
+// 自定义壁纸（桌面端），接在 wallpaper-47.webp 之后
+const customDesktopWallpaperImages = Array.from(
+	{ length: 5 },
+	(_, index) =>
+		`/assets/images/wallpaper/wallpaper-${String(index + 48).padStart(2, "0")}.webp`,
+);
+
 const desktopWallpaperImages = [
 	homepageWallpaper,
 	alternateHomepageWallpaper,
 	...wutheringWavesWallpaperImages,
 	...otherWallpaperImages,
+	...customDesktopWallpaperImages,
 ];
 
 const mobileOnlyWutheringWavesImages = Array.from(
@@ -32,9 +41,18 @@ const mobileOnlyWutheringWavesImages = Array.from(
 	(_, index) =>
 		`/assets/images/wallpaper/wallpaper-mobile-${String(index + 1).padStart(2, "0")}.webp`,
 );
+
+// 自定义壁纸（移动端），接在 wallpaper-mobile-01~03.webp 之后
+const customMobileWallpaperImages = Array.from(
+	{ length: 4 },
+	(_, index) =>
+		`/assets/images/wallpaper/wallpaper-mobile-${String(index + 4).padStart(2, "0")}.webp`,
+);
+
 const mobileWallpaperImages = [
- mobileHomepageWallpaper,
- ...mobileOnlyWutheringWavesImages,
+	mobileHomepageWallpaper,
+	...mobileOnlyWutheringWavesImages,
+	...customMobileWallpaperImages,
 	...wutheringWavesWallpaperImages,
 	...otherWallpaperImages,
 ];
